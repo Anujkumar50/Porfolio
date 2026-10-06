@@ -1,9 +1,32 @@
 import { useEffect, useState } from "react";
+import { TypeAnimation } from 'react-type-animation';
+import emailjs from "@emailjs/browser";
 
 
 function Navbar() {
   const [menu, setMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+   const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs
+      .sendForm(
+        "service_fw2v77d",
+        "template_8ieb6tq",
+        e.target,
+        "hz_zmygQxZRN8B9n0",
+      )
+      .then(
+        () => {
+          alert("Message sent successfully!");
+          e.target.reset();
+        },
+        (error) => {
+          console.log("FAILED...", error);
+          alert("Message failed to send!");
+        },
+      );
+  };
 
 
 
@@ -25,12 +48,13 @@ function Navbar() {
 
   const projects = [
     {
-      title: "MERN Authentication System",
+      title: "E-commers",
       description:
         "Secure login and registration system with JWT authentication, password hashing and email verification.",
       image:
         "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800",
       tech: "React • Node.js • Express • MongoDB",
+      url:"null",
     },
     {
       title: "Amazon Store Clone",
@@ -39,6 +63,7 @@ function Navbar() {
       image:
         "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800",
       tech: "React • JavaScript • CSS",
+      url:"null",
     },
     {
       title: "Food Delivery Website",
@@ -47,6 +72,7 @@ function Navbar() {
       image:
         "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
       tech: "React • JavaScript • API",
+      url:"https://first-project-seven-tau.vercel.app/",
     },
     {
       title: "Bank Management System",
@@ -55,6 +81,7 @@ function Navbar() {
       image:
         "https://images.unsplash.com/photo-1556740749-887f6717d7e4?w=800",
       tech: "React • Node.js • MongoDB",
+      url:null,
     },
     {
       title: "Video Library",
@@ -63,6 +90,7 @@ function Navbar() {
       image:
         "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=800",
       tech: "React • Node.js • MongoDB",
+      url:null,
     },
     {
       title: "Face Recognition Attendance",
@@ -71,6 +99,7 @@ function Navbar() {
       image:
         "https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=800",
       tech: "Python • OpenCV",
+      url:null,
     },
   ];
 
@@ -125,6 +154,9 @@ function Navbar() {
             <a href="#education" className="hover:text-blue-400">
               Education
             </a>
+            <a href="https://porfolio-six-gray.vercel.app/" className="hover:text-blue-400">
+              Portfolio
+            </a>
 
             <a
               href="#contact"
@@ -132,6 +164,7 @@ function Navbar() {
             >
               Contact
             </a>
+           
           </div>
 
           {/* Mobile Button */}
@@ -198,8 +231,28 @@ function Navbar() {
             <h1 className="text-5xl font-bold leading-tight md:text-7xl">
               Hi, I'm
               <span className="block text-blue-500">
-                Anuj Kumar
-              </span>
+                
+       <TypeAnimation
+  sequence={[
+    "Anuj Kumar",
+    1000,
+    "",
+    500,
+    "Anuj Kumar",
+    1000,
+    "",
+    500,
+  ]}
+  wrapper="span"
+  speed={50}
+  repeat={Infinity}
+  style={{
+    fontSize: "1em",
+    display: "inline-block",
+    color: "blue",
+  }}
+/>
+                    </span>
             </h1>
 
             <h2 className="mt-5 text-2xl font-semibold text-slate-300 md:text-3xl">
@@ -295,8 +348,9 @@ function Navbar() {
             <div>
 
               <img
-                src="/profile.png"
+                src="3.png"
                 alt="Anuj Kumar"
+                style={{marginTop:20}}
                 className="mx-auto h-80 w-80 rounded-2xl object-cover shadow-2xl"
               />
 
@@ -552,7 +606,7 @@ function Navbar() {
                   </p>
 
                   <a
-                    href="https://first-project-seven-tau.vercel.app/"
+                    href={project.url}
                     target="_blank"
                     rel="noreferrer"
                     className="mt-6 inline-block rounded-lg bg-blue-600 px-5 py-2 hover:bg-blue-700"
@@ -714,10 +768,7 @@ function Navbar() {
 
             <form
               className="rounded-2xl border border-slate-800 bg-slate-950 p-6"
-              onSubmit={(e) => {
-                e.preventDefault();
-                alert("Thank you! Your message has been submitted.");
-              }}
+              onSubmit={sendEmail}
             >
 
               <input
@@ -750,6 +801,7 @@ function Navbar() {
 
               <button
                 type="submit"
+               
                 className="w-full rounded-lg bg-blue-600 px-6 py-3 font-semibold hover:bg-blue-700"
               >
                 Send Message
