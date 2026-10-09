@@ -182,3 +182,56 @@
     border-right-color: var(--border);
   }
 }
+
+.name-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #111;
+  overflow: hidden;
+}
+
+.signature-svg {
+  width: min(524px, 95vw);
+  height: auto;
+  overflow: visible;
+}
+
+.signature-text {
+  font-family: "Edwardian Script ITC", cursive;
+  font-size: 74px;
+  font-style:oblique;
+  fill: transparent;
+  stroke: #ffffff;
+  stroke-width: 1.2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+
+  animation:
+    drawSignature 3s ease-in-out forwards,
+    fillSignature 1s ease forwards 3.5s;
+}
+
+@keyframes drawSignature {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fillSignature {
+  from {
+    fill: transparent;
+  }
+
+  to {
+    fill: #ffffff;
+  }
+}
